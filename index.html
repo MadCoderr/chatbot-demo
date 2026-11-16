@@ -3,27 +3,266 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Chat widget demo</title>
-  <style>
-    /* Deliberately hostile host styles — the widget's Shadow DOM must ignore them. */
-    body { margin: 0; font: 16px/1.6 Georgia, serif; color: #333; background: #fafafa; }
-    button { background: hotpink !important; border-radius: 0 !important; }
-    p, div { letter-spacing: .05em; }
-    main { max-width: 720px; margin: 80px auto; padding: 0 24px; }
-    code { background: #eee; padding: 2px 6px; }
-  </style>
+  <meta name="robots" content="noindex, nofollow">
+  <title>CaratIQ — AI assistant prototype</title>
+  <link rel="icon" href="https://www.caratiq.com/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <h1>Chat widget demo</h1>
-    <p>This page embeds the widget exactly as a client site would — one line:</p>
-    <p><code>&lt;script src="https://&lt;backend&gt;/widget.js" async&gt;&lt;/script&gt;</code></p>
-    <p>The page sets hot-pink square buttons and serif type on purpose. If the widget
-       looks normal, its Shadow DOM isolation is working.</p>
-    <p><button>A host-page button (should be pink)</button></p>
+  <header class="site-header">
+    <div class="proto-banner" role="note">
+      Prototype by Shahroon — not the official CaratIQ site. Visit <a href="https://www.caratiq.com" target="_blank" rel="noopener">caratiq.com</a>
+    </div>
+    <nav class="nav container" aria-label="Main">
+      <a href="#top" class="brand"><svg role="img" aria-label="CaratIQ" class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="117" height="42" fill="none" > <path stroke="#0146C5" stroke-width="6" d="M2.879 18.893 18.865 2.907m0 36.215L2.879 23.134M23.135 2.88l15.986 15.986m0 4.27L23.135 39.121" /> <path stroke="#6FDBD1" stroke-width="6" d="m25.121 24.879 10.658 10.657" /> <path fill="#101828" d="M68.108 19.29h-2.125a2.7 2.7 0 0 0-.335-.926 2.5 2.5 0 0 0-1.438-1.12 3.2 3.2 0 0 0-.994-.147q-.949 0-1.682.477-.733.471-1.148 1.386-.414.91-.414 2.222 0 1.335.414 2.25.42.909 1.148 1.375.733.46 1.676.46.524 0 .977-.136.46-.142.824-.415.37-.273.62-.67.255-.399.352-.91l2.125.012a4.6 4.6 0 0 1-.517 1.556 4.6 4.6 0 0 1-1.028 1.285q-.637.55-1.49.863a5.6 5.6 0 0 1-1.891.307q-1.535 0-2.739-.71t-1.898-2.051q-.693-1.341-.693-3.216 0-1.881.7-3.216.698-1.341 1.903-2.051t2.727-.71q.972 0 1.807.272a4.6 4.6 0 0 1 1.488.801q.654.523 1.074 1.285.426.755.557 1.727m4.35 7.886a3.6 3.6 0 0 1-1.493-.295q-.66-.302-1.046-.887-.38-.584-.38-1.443 0-.739.272-1.221.273-.483.744-.773a3.8 3.8 0 0 1 1.063-.438 9 9 0 0 1 1.233-.221q.767-.08 1.244-.142.478-.069.693-.205.222-.142.222-.437v-.035q0-.642-.38-.994-.381-.352-1.097-.352-.756 0-1.2.33-.436.33-.59.778l-1.92-.273q.227-.795.75-1.33.522-.54 1.278-.806a4.9 4.9 0 0 1 1.67-.273q.631 0 1.256.148.625.147 1.142.489.517.335.83.914.318.58.318 1.45V27H75.09v-1.199h-.069a2.5 2.5 0 0 1-.528.682 2.5 2.5 0 0 1-.847.506q-.506.187-1.187.187m.535-1.511q.619 0 1.074-.244.454-.25.699-.66.25-.409.25-.892v-1.028a1 1 0 0 1-.33.148 5 5 0 0 1-.511.119q-.284.051-.563.09l-.483.069q-.46.063-.824.205a1.37 1.37 0 0 0-.574.397q-.21.25-.21.648 0 .569.415.858t1.057.29M79.135 27v-8.727h1.994v1.454h.091q.24-.755.818-1.165.585-.414 1.336-.414.17 0 .38.017.216.01.358.04v1.892a2 2 0 0 0-.415-.08 4 4 0 0 0-.54-.04 2.1 2.1 0 0 0-1.01.245q-.445.238-.7.664t-.255.983V27zm8.699.176a3.6 3.6 0 0 1-1.495-.295q-.658-.302-1.045-.887-.38-.584-.38-1.443 0-.739.272-1.221.273-.483.744-.773a3.8 3.8 0 0 1 1.063-.438 9 9 0 0 1 1.233-.221q.767-.08 1.244-.142.478-.069.693-.205.222-.142.222-.437v-.035q0-.642-.38-.994-.381-.352-1.097-.352-.756 0-1.2.33-.436.33-.59.778l-1.92-.273q.227-.795.75-1.33.522-.54 1.278-.806a4.9 4.9 0 0 1 1.67-.273q.631 0 1.256.148.625.147 1.142.489.517.335.83.914.318.58.318 1.45V27h-1.977v-1.199h-.069a2.5 2.5 0 0 1-.528.682 2.5 2.5 0 0 1-.847.506q-.506.187-1.187.187m.534-1.511q.619 0 1.074-.244.454-.25.699-.66.25-.409.25-.892v-1.028a1 1 0 0 1-.33.148 5 5 0 0 1-.511.119q-.284.051-.563.09l-.483.069q-.46.063-.824.205a1.37 1.37 0 0 0-.574.397q-.21.25-.21.648 0 .569.415.858t1.057.29m10.5-7.392v1.59H93.85v-1.59zm-3.778-2.091h2.056v8.193q0 .415.125.636.13.216.341.296.21.08.466.08.193 0 .352-.029.165-.029.25-.051l.347 1.608q-.165.057-.472.125-.3.068-.738.08a3.35 3.35 0 0 1-1.392-.234 2.17 2.17 0 0 1-.983-.806q-.358-.546-.352-1.364zm7.884-.818V27h-2.108V15.364zm6.618 7.727h1.909l1.131 1.466.807.954L115.376 28h-2.045l-1.318-1.67-.563-.796zm6.063-1.91q0 1.882-.705 3.222-.699 1.335-1.909 2.046-1.204.71-2.733.71t-2.738-.71q-1.205-.716-1.909-2.051-.699-1.341-.699-3.216 0-1.881.699-3.216.704-1.341 1.909-2.051 1.21-.71 2.738-.71t2.733.71q1.21.71 1.909 2.05.705 1.336.705 3.217m-2.119 0q0-1.323-.415-2.232-.41-.915-1.137-1.38-.726-.472-1.676-.472-.948 0-1.676.471-.727.466-1.142 1.38-.41.91-.409 2.234 0 1.324.409 2.239.415.908 1.142 1.38.728.466 1.676.466.95 0 1.676-.466.728-.471 1.137-1.38.415-.915.415-2.24" /> </svg></a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://www.caratiq.com/login" target="_blank" rel="noopener" class="btn btn-ghost hide-sm">Log in</a>
+        <a href="https://www.caratiq.com/signup" target="_blank" rel="noopener" class="btn btn-primary">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <h1>The Jewelry Store POS</h1>
+        <p class="lead">CaratIQ helps you increase revenue, decrease costs, and easily manage your jewelry store operations.</p>
+        <div class="hero-cta">
+          <a href="https://www.caratiq.com/signup" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Get started</a>
+          <a href="https://www.caratiq.com/contact-us" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Request a demo</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://www.caratiq.com/assets/home/hero.png" alt="CaratIQ dashboard" width="1200" height="800" loading="eager">
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">A Complete Platform</p>
+          <h2>Take your jewelry business to the next level</h2>
+        </div>
+        <div class="grid grid-3">
+        <article class="card feature">
+          <h3>Point of sale (POS)</h3>
+          <p>Efficiently manage your jewelry sales and improve your store’s customer experience with our intuitive Point of Sale (POS) System</p>
+          <a href="https://www.caratiq.com/features/point-of-sale" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>E-commerce Website</h3>
+          <p>Step into the future with our E-commerce Website Module. Maximize sales potential, engage customers, and stay ahead</p>
+          <a href="https://www.caratiq.com/features/e-commerce-website" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>CRM</h3>
+          <p>Maximize customer satisfaction and sales growth by getting the power of CaratIQ's advanced jewelry CRM software</p>
+          <a href="https://www.caratiq.com/features/crm" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Inventory Management</h3>
+          <p>Simplify your inventory audits and improve operational efficiency with our specialized jewelry inventory software</p>
+          <a href="https://www.caratiq.com/features/inventory-management" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Marketing</h3>
+          <p>Maximize sales and customer engagement with our all-in-one marketing module</p>
+          <a href="https://www.caratiq.com/features/marketing" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Accounting</h3>
+          <p>Improve the efficiency and accuracy of your jewelry business's finances with CaratIQ's Jewelry Accounting Software</p>
+          <a href="https://www.caratiq.com/features/accounting" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Task Management</h3>
+          <p>Stay organized, prioritize special and repair orders, and collaborate seamlessly to drive productivity and success in your jewelry business</p>
+          <a href="https://www.caratiq.com/features/task-management" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Employee Management</h3>
+          <p>From scheduling shifts to tracking performance, empower your team and optimize your jewelry store’s operations with ease</p>
+          <a href="https://www.caratiq.com/features/employee-management" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Contracts and Forms</h3>
+          <p>From vendor contracts to employee agreements, manage all your documents in one secure platform</p>
+          <a href="https://www.caratiq.com/features/contracts-and-forms" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Reporting</h3>
+          <p>Gain access to comprehensive analytics and data visualization tools to make informed decisions and drive growth for your jewelry store</p>
+          <a href="https://www.caratiq.com/features/reporting" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Store credits</h3>
+          <p>Enhance customer loyalty and streamline your refund processes by offering store credits, allowing customers to redeem points instead of cash</p>
+          <a href="https://www.caratiq.com/features/store-credits" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        <article class="card feature">
+          <h3>Online appointments</h3>
+          <p>Streamline appointment bookings, reduce no-shows, and provide a seamless booking experience for your clients</p>
+          <a href="https://www.caratiq.com/features/online-appointments" target="_blank" rel="noopener" class="text-link">Learn more →</a>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="integrations" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Integrations</p>
+          <h2>CaratIQ's Integration Network</h2>
+          <p>CaratIQ offers all the integrations you need to run your jewelry store</p>
+        </div>
+        <div class="grid grid-4">
+        <article class="card integration">
+          <h3>Diamond Labs</h3>
+          <ul><li>Gemological Institute Of America</li><li>International Gemological Institute</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Repair Pricing</h3>
+          <ul><li>Geller Blue Book</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Appraisal/Insurance</h3>
+          <ul><li>BriteCo</li><li>Montage</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Accounting</h3>
+          <ul><li>QuickBooks</li><li>Xero</li><li>Sage</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Websites</h3>
+          <ul><li>Shopify</li><li>WooCommerce</li><li>Magento</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Wholesalers</h3>
+          <ul><li>Stuller</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Live Price</h3>
+          <ul><li>Metal Price API</li><li>Rapnet</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Marketing</h3>
+          <ul><li>Mailchimp</li><li>Klaviyo</li><li>Podium</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Collaboration</h3>
+          <ul><li>Notion</li><li>Asana</li><li>Airtable</li><li>Google Sheets</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Sales Tax</h3>
+          <ul><li>TaxJar</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Shipping</h3>
+          <ul><li>Shippo</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Integration Platform</h3>
+          <ul><li>Zapier</li></ul>
+        </article>
+        <article class="card integration">
+          <h3>Payment partners</h3>
+          <ul><li>Mastercard</li><li>Stripe</li><li>Apple Pay</li><li>Amazon Pay</li><li>Paypal</li><li>Visa</li><li>Affirm</li><li>klarna</li></ul>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Prices</p>
+          <h2>Plans that fit your scale</h2>
+          <p>Simple, transparent pricing that grows with you</p>
+        </div>
+        <div class="grid grid-3 plans">
+        <article class="card plan">
+          <div class="plan-head">
+            <h3>basic</h3>
+            
+          </div>
+          <div class="prices">
+            <div class="price-row">
+              <span class="period">Monthly</span>
+              <span class="amount">$350</span>
+              <span class="per">Per Month</span>
+            </div>
+            <div class="price-row">
+              <span class="period">Annually <span class="badge small">One month free</span></span>
+              <span class="amount">$300</span>
+              <span class="per">Per Month</span>
+            </div>
+          </div>
+          <ul class="quotas"><li><span class="q-name">Users</span><span class="q-val">3 per store<br>Additional User: $100 per month</span></li><li><span class="q-name">Emails</span><span class="q-val">1,000<br>Additional Email: $0.01</span></li><li><span class="q-name">SMS Segments</span><span class="q-val">250<br>USA Additional SMS: $0.10<br>International Additional SMS: $0.25</span></li><li><span class="q-name">Call time</span><span class="q-val">250<br>USA Additional Minute: $0.25<br>International Additional Minute: $0.30</span></li><li><span class="q-name">Max amount of items</span><span class="q-val">20,000</span></li><li><span class="q-name">Max Storage</span><span class="q-val">5GB<br>Additional GB: $1</span></li></ul>
+          <a href="https://www.caratiq.com/contact-us" target="_blank" rel="noopener" class="btn btn-outline btn-block">Request a demo</a>
+        </article>
+        <article class="card plan popular">
+          <div class="plan-head">
+            <h3>professional</h3>
+            <span class="badge">Most popular</span>
+          </div>
+          <div class="prices">
+            <div class="price-row">
+              <span class="period">Monthly</span>
+              <span class="amount">$650</span>
+              <span class="per">Per Month</span>
+            </div>
+            <div class="price-row">
+              <span class="period">Annually <span class="badge small">One month free</span></span>
+              <span class="amount">$550</span>
+              <span class="per">Per Month</span>
+            </div>
+          </div>
+          <ul class="quotas"><li><span class="q-name">Users</span><span class="q-val">5 per store<br>Additional User: $100 per month</span></li><li><span class="q-name">Emails</span><span class="q-val">5,000<br>Additional Email: $0.01</span></li><li><span class="q-name">SMS Segments</span><span class="q-val">250<br>USA Additional SMS: $0.10<br>International Additional SMS: $0.25</span></li><li><span class="q-name">Call time</span><span class="q-val">250<br>USA Additional Minute: $0.25<br>International Additional Minute: $0.30</span></li><li><span class="q-name">Max amount of items</span><span class="q-val">50,000</span></li><li><span class="q-name">Max Storage</span><span class="q-val">25GB<br>Additional GB: $1</span></li></ul>
+          <a href="https://www.caratiq.com/contact-us" target="_blank" rel="noopener" class="btn btn-outline btn-block">Request a demo</a>
+        </article>
+        <article class="card plan">
+          <div class="plan-head">
+            <h3>premium</h3>
+            
+          </div>
+          <div class="prices">
+            <div class="price-row">
+              <span class="period">Monthly</span>
+              <span class="amount">$1,000</span>
+              <span class="per">Per Month</span>
+            </div>
+            <div class="price-row">
+              <span class="period">Annually <span class="badge small">One month free</span></span>
+              <span class="amount">$800</span>
+              <span class="per">Per Month</span>
+            </div>
+          </div>
+          <ul class="quotas"><li><span class="q-name">Users</span><span class="q-val">7 per store<br>Additional User: $100 per month</span></li><li><span class="q-name">Emails</span><span class="q-val">25,000<br>Additional Email: $0.01</span></li><li><span class="q-name">SMS Segments</span><span class="q-val">250<br>USA Additional SMS: $0.10<br>International Additional SMS: $0.25</span></li><li><span class="q-name">Call time</span><span class="q-val">250<br>USA Additional Minute: $0.25<br>International Additional Minute: $0.30</span></li><li><span class="q-name">Max amount of items</span><span class="q-val">100,000</span></li><li><span class="q-name">Max Storage</span><span class="q-val">100GB<br>Additional GB: $1</span></li></ul>
+          <a href="https://www.caratiq.com/contact-us" target="_blank" rel="noopener" class="btn btn-outline btn-block">Request a demo</a>
+        </article>
+        </div>
+        <div class="included card">
+          <h3>Included in Basic, Professional and Premium</h3>
+          <ul><li>Ecommerce Website</li><li>Marketing Module</li><li>Store Credits</li><li>Online Appointments</li><li>POS</li><li>CRM</li><li>Task Management</li><li>Accounting</li><li>Inventory Management</li><li>Contracts and Forms</li><li>Reporting</li><li>Employee Management</li></ul>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="/widget.js" async></script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="https://www.caratiq.com" target="_blank" rel="noopener" class="brand"><svg role="img" aria-label="CaratIQ" class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="117" height="42" fill="none" > <path stroke="#0146C5" stroke-width="6" d="M2.879 18.893 18.865 2.907m0 36.215L2.879 23.134M23.135 2.88l15.986 15.986m0 4.27L23.135 39.121" /> <path stroke="#6FDBD1" stroke-width="6" d="m25.121 24.879 10.658 10.657" /> <path fill="#101828" d="M68.108 19.29h-2.125a2.7 2.7 0 0 0-.335-.926 2.5 2.5 0 0 0-1.438-1.12 3.2 3.2 0 0 0-.994-.147q-.949 0-1.682.477-.733.471-1.148 1.386-.414.91-.414 2.222 0 1.335.414 2.25.42.909 1.148 1.375.733.46 1.676.46.524 0 .977-.136.46-.142.824-.415.37-.273.62-.67.255-.399.352-.91l2.125.012a4.6 4.6 0 0 1-.517 1.556 4.6 4.6 0 0 1-1.028 1.285q-.637.55-1.49.863a5.6 5.6 0 0 1-1.891.307q-1.535 0-2.739-.71t-1.898-2.051q-.693-1.341-.693-3.216 0-1.881.7-3.216.698-1.341 1.903-2.051t2.727-.71q.972 0 1.807.272a4.6 4.6 0 0 1 1.488.801q.654.523 1.074 1.285.426.755.557 1.727m4.35 7.886a3.6 3.6 0 0 1-1.493-.295q-.66-.302-1.046-.887-.38-.584-.38-1.443 0-.739.272-1.221.273-.483.744-.773a3.8 3.8 0 0 1 1.063-.438 9 9 0 0 1 1.233-.221q.767-.08 1.244-.142.478-.069.693-.205.222-.142.222-.437v-.035q0-.642-.38-.994-.381-.352-1.097-.352-.756 0-1.2.33-.436.33-.59.778l-1.92-.273q.227-.795.75-1.33.522-.54 1.278-.806a4.9 4.9 0 0 1 1.67-.273q.631 0 1.256.148.625.147 1.142.489.517.335.83.914.318.58.318 1.45V27H75.09v-1.199h-.069a2.5 2.5 0 0 1-.528.682 2.5 2.5 0 0 1-.847.506q-.506.187-1.187.187m.535-1.511q.619 0 1.074-.244.454-.25.699-.66.25-.409.25-.892v-1.028a1 1 0 0 1-.33.148 5 5 0 0 1-.511.119q-.284.051-.563.09l-.483.069q-.46.063-.824.205a1.37 1.37 0 0 0-.574.397q-.21.25-.21.648 0 .569.415.858t1.057.29M79.135 27v-8.727h1.994v1.454h.091q.24-.755.818-1.165.585-.414 1.336-.414.17 0 .38.017.216.01.358.04v1.892a2 2 0 0 0-.415-.08 4 4 0 0 0-.54-.04 2.1 2.1 0 0 0-1.01.245q-.445.238-.7.664t-.255.983V27zm8.699.176a3.6 3.6 0 0 1-1.495-.295q-.658-.302-1.045-.887-.38-.584-.38-1.443 0-.739.272-1.221.273-.483.744-.773a3.8 3.8 0 0 1 1.063-.438 9 9 0 0 1 1.233-.221q.767-.08 1.244-.142.478-.069.693-.205.222-.142.222-.437v-.035q0-.642-.38-.994-.381-.352-1.097-.352-.756 0-1.2.33-.436.33-.59.778l-1.92-.273q.227-.795.75-1.33.522-.54 1.278-.806a4.9 4.9 0 0 1 1.67-.273q.631 0 1.256.148.625.147 1.142.489.517.335.83.914.318.58.318 1.45V27h-1.977v-1.199h-.069a2.5 2.5 0 0 1-.528.682 2.5 2.5 0 0 1-.847.506q-.506.187-1.187.187m.534-1.511q.619 0 1.074-.244.454-.25.699-.66.25-.409.25-.892v-1.028a1 1 0 0 1-.33.148 5 5 0 0 1-.511.119q-.284.051-.563.09l-.483.069q-.46.063-.824.205a1.37 1.37 0 0 0-.574.397q-.21.25-.21.648 0 .569.415.858t1.057.29m10.5-7.392v1.59H93.85v-1.59zm-3.778-2.091h2.056v8.193q0 .415.125.636.13.216.341.296.21.08.466.08.193 0 .352-.029.165-.029.25-.051l.347 1.608q-.165.057-.472.125-.3.068-.738.08a3.35 3.35 0 0 1-1.392-.234 2.17 2.17 0 0 1-.983-.806q-.358-.546-.352-1.364zm7.884-.818V27h-2.108V15.364zm6.618 7.727h1.909l1.131 1.466.807.954L115.376 28h-2.045l-1.318-1.67-.563-.796zm6.063-1.91q0 1.882-.705 3.222-.699 1.335-1.909 2.046-1.204.71-2.733.71t-2.738-.71q-1.205-.716-1.909-2.051-.699-1.341-.699-3.216 0-1.881.699-3.216.704-1.341 1.909-2.051 1.21-.71 2.738-.71t2.733.71q1.21.71 1.909 2.05.705 1.336.705 3.217m-2.119 0q0-1.323-.415-2.232-.41-.915-1.137-1.38-.726-.472-1.676-.472-.948 0-1.676.471-.727.466-1.142 1.38-.41.91-.409 2.234 0 1.324.409 2.239.415.908 1.142 1.38.728.466 1.676.466.95 0 1.676-.466.728-.471 1.137-1.38.415-.915.415-2.24" /> </svg></a>
+      <p class="disclaimer">Unofficial prototype for demonstration. CaratIQ is a trademark of its owner. All product information from caratiq.com.</p>
+    </div>
+  </footer>
+  <script src="https://caratiq-chatbot-backend.vercel.app/widget.js" async></script>
 </body>
 </html>
